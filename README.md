@@ -1,3 +1,3 @@
 # multigrate_reproducibility
 
-Reproduce manucscript figures.
+The code to reproduce manucscript figures.
