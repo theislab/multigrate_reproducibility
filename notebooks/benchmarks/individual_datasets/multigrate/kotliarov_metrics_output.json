@@ -1,0 +1,8 @@
+{
+  "ASW_label/batch": 0.957940431959045,
+  "graph_conn": 0.9935628049288313,
+  "ASW_label": 0.6916498392820358,
+  "NMI_cluster/label": 0.9198712738403848,
+  "ARI_cluster/label": 0.913472361828739,
+  "isolated_label_silhouette": 0.5570535355114511
+}

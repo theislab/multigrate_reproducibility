@@ -1,0 +1,42 @@
+{
+    "model": {
+        "name": "MultiVAE_PoE_cond",
+        "params": {
+            "adatas": [
+                ["multigrate/data/10xpbmc10k-2020/expressions_hvg.h5ad"],
+                ["multigrate/data/10xpbmc10k-2020/peaks.h5ad"]
+            ],
+            "names": [["rna1"], ["atac1"]],
+            "pair_groups": [["pair1"], ["pair1"]],
+            "condition": true,
+            "recon_coef": 1,
+            "kl_coef": 0.000001,
+            "integ_coef": 0, # no batches anyway
+            "cycle_coef": 0,
+            "z_dim": 15,
+            "h_dim": 32,
+            "hiddens": [[], []],
+            "layers": [["count"], [null]],
+            "output_activations": ["linear", "linear"],
+            "losses": ["nb", "mse"],
+            "shared_hiddens": [],
+            "dropout": 0.2
+        },
+        "train": {
+            "n_iters": 15000,
+            "lr": 3e-4,
+            "batch_size": 64,
+            "validate_every": 1500,
+            "kl_anneal_iters": 7500,
+            "verbose": 1
+        }
+    },
+    "experiment": {
+        "seed": 42,
+        "pair-split": 1,
+        "batch": false,
+        "batch_key": "study",
+        "calculate_metrics": true,
+        "impute": false
+    }
+}

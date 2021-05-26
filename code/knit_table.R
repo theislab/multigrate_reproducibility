@@ -189,8 +189,6 @@ scIB_knit_table <- function(
   
   # gather text data
   ind_text <- which(column_info$geom == "text")
-  print(data)
-  print(colnames(data))
   dat_mat <- as.matrix(data[, ind_text])
   
   colnames(dat_mat) = colnames(data)[ind_text]
@@ -318,11 +316,18 @@ scIB_knit_table <- function(
                                 label_value = "Ranking", 
                                 hjust = 0, vjust = 0, 
                                 fontface = "bold")
+
+  if(!plot_time){
+    rank_groups = rank_groups[1:3]
+  }
   
   for(rg in rank_groups){
     rank_palette <- colorRampPalette(rev(brewer.pal(9, palettes[[rg]])))(5)
     
-    
+    print(rank_minimum_x[[rg]])
+    print(seq(leg_max_y-4, leg_max_y - 2, by = .5))
+    print(seq(leg_max_y-3.5, leg_max_y -1.5, by = .5))
+    print(rank_palette)
     rank_data <- data.frame(xmin = rank_minimum_x[[rg]],
                             xmax = rank_minimum_x[[rg]] + .8,
                             ymin = seq(leg_max_y-4, leg_max_y - 2, by = .5),

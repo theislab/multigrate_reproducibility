@@ -1,0 +1,7 @@
+{
+  "graph_conn": 0.9928671644580327,
+  "ASW_label": 0.65590800344944,
+  "NMI_cluster/label": 0.8125177810388433,
+  "ARI_cluster/label": 0.774574722796181,
+  "isolated_label_silhouette": 0.5674723730507222
+}
