@@ -1,0 +1,2 @@
+	lr	kl	z_dim	cond_dim	mix	integrate_on	modality_alignment	alignment_type	integ	mod_0	mod_1	rna_indices_end	split	categorical_covariate_keys	seed	batch_size	train_max_epochs	train_save_checkpoint_every_n_epochs	query_max_epochs	umap_colors
+0	0.001	1e-05	16	16	mixture		MMD	marginal	0.01	1.0	0.1	2000	split		0	256	4	2	2	['gex_concat_clusters', 'msi_concat_clusters', 'split']

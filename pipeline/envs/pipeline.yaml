@@ -1,0 +1,18 @@
+name: pipeline
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - python=3.10
+  - scanpy
+  - matplotlib
+  - pandas!=2.1.2
+  - pip
+  - pip:
+      - wandb
+      - requests
+      - ipywidgets
+      - setuptools<70
+      - -e /lustre/groups/ml01/workspace/anastasia.litinetskaya/code/multimil
+      - "git+https://github.com/theislab/scib.git"
