@@ -3,3 +3,8 @@
 __pycache__
 *.h5ad
 .Rhistory
+csv/
+figures/
+data/
+scvi_log/
+*.csv
