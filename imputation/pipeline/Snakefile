@@ -1,0 +1,69 @@
+import os
+import yaml
+import pandas as pd
+
+configfile: "config.yaml"
+
+valid_combos = [
+    (method, setting)
+    for method, info in config["methods"].items()
+    for setting in info["settings"]
+]
+print("Valid method/setting combinations:")
+for method, setting in valid_combos:
+    print(f"  - {method} , {setting}")
+
+rule all:
+    input:
+        "data/output/merged_imputation_eval_metrics.tsv"
+    default_target: True
+    
+rule merge_imputation_results:
+    input:
+        expand("data/output/{method}/{setting}/eval_metrics.tsv",
+            zip,
+            method=[m for m, _ in valid_combos],
+            setting=[s for _, s in valid_combos],
+        )
+    output:
+        "data/output/merged_imputation_eval_metrics.tsv"
+    run:
+        input_files = [input] if isinstance(input, str) else input
+        print(input_files)
+        dfs = []
+        for file in input_files:
+            print(f"File exists: {file} : {os.path.exists(file)}")
+            df = pd.read_table(file)
+            df['method'] = file.split('/')[-3]
+            df['setting'] = file.split('/')[-2]
+            dfs.append(df)
+        metrics_df = pd.concat(dfs)
+        metrics_df.to_csv(output[0], sep="\t", index=False)
+
+
+rule run_imputation:
+    input:
+        mod1=lambda wc: "data/input/" + config["settings"][wc.setting]["mod1"],
+        mod2=lambda wc: "data/input/" + config["settings"][wc.setting]["mod2"],
+        mod1_hvf=lambda wc: "data/input/" + config["settings"][wc.setting]["mod1_hvf"],
+        mod2_hvf=lambda wc: "data/input/" + config["settings"][wc.setting]["mod2_hvf"]
+    output:
+        h5ad="data/output/{method}/{setting}/imputed.h5ad",
+        log="data/output/{method}/{setting}/runtime.json"
+    params:
+        script=lambda wildcards: config["methods"][wildcards.method]["script"]
+    conda:
+        lambda wildcards: config["methods"][wildcards.method]["env"]
+    script:
+        'scripts/run_{wildcards.method}.py'
+
+
+rule evaluate_imputation:
+    input:
+        pred="data/output/{method}/{setting}/imputed.h5ad"
+    output:
+        "data/output/{method}/{setting}/eval_metrics.tsv"
+    conda:
+        config["eval_env"]
+    script:
+        "scripts/eval_imputation.py"

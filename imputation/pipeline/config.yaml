@@ -1,0 +1,67 @@
+methods:
+  mean:
+    env: "sc"
+    script: "scripts/run_mean.py"
+    settings: ["cite_25", "multiome_25" , "cite_50", "multiome_50", "cite_75", "multiome_75"]
+  linear_regression:
+    env: "sc"
+    script: "scripts/run_linear_regression.py"
+    settings: ["cite_25", "multiome_25", "cite_50", "multiome_50", "cite_75", "multiome_75"]
+  knn:
+    env: "sc"
+    script: "scripts/run_knn.py"
+    settings: ["cite_25", "multiome_25", "cite_50", "multiome_50", "cite_75", "multiome_75"]
+  knn_batch:
+    env: "sc"
+    script: "scripts/run_knn_batch.py"
+    settings: ["cite_25", "multiome_25", "cite_50", "multiome_50", "cite_75", "multiome_75"]
+  scipenn:
+    env: "scipenn"
+    script: "scripts/run_scipenn.py"
+    settings: ["cite_25", "cite_50", "cite_75"]
+  scbutterfly:
+    env: "scbutterfly"
+    script: "scripts/run_scbutterfly.py"
+    settings: ["cite_25", "multiome_25", "cite_50", "multiome_50", "cite_75", "multiome_75"]
+  jamie:
+    env: "jamie"
+    script: "scripts/run_jamie.py"
+    settings: ["multiome_25", "multiome_50", "multiome_75"]
+  monae:
+    env: "monae_simba"
+    script: "scripts/monae/run_monae.py"
+    settings: ["cite_25", "cite_50", "cite_75", "multiome_25", "multiome_50",  "multiome_75"]
+
+settings:
+  cite_25:
+    mod1: "cite/adata_gene_25.h5ad"
+    mod2: "cite/adata_protein_25.h5ad"
+    mod1_hvf: "cite/hvf_mod1.txt"
+    mod2_hvf: "cite/hvf_mod2.txt"
+  multiome_25:
+    mod1: "multiome/adata_gene_25.h5ad"
+    mod2: "multiome/adata_atac_25.h5ad"
+    mod1_hvf: "multiome/hvf_mod1.txt"
+    mod2_hvf: "multiome/hvf_mod2.txt"
+  cite_50:
+    mod1: "cite/adata_gene_50.h5ad"
+    mod2: "cite/adata_protein_50.h5ad"
+    mod1_hvf: "cite/hvf_mod1.txt"
+    mod2_hvf: "cite/hvf_mod2.txt"
+  multiome_50:
+    mod1: "multiome/adata_gene_50.h5ad"
+    mod2: "multiome/adata_atac_50.h5ad"
+    mod1_hvf: "multiome/hvf_mod1.txt"
+    mod2_hvf: "multiome/hvf_mod2.txt"
+  cite_75:
+    mod1: "cite/adata_gene_75.h5ad"
+    mod2: "cite/adata_protein_75.h5ad"
+    mod1_hvf: "cite/hvf_mod1.txt"
+    mod2_hvf: "cite/hvf_mod2.txt"
+  multiome_75:
+    mod1: "multiome/adata_gene_75.h5ad"
+    mod2: "multiome/adata_atac_75.h5ad"
+    mod1_hvf: "multiome/hvf_mod1.txt"
+    mod2_hvf: "multiome/hvf_mod2.txt"
+
+eval_env: "sc"
